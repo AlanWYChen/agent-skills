@@ -1,0 +1,40 @@
+---
+name: web
+description: "Guide production web development. Use for browser applications, public websites, SPAs, and server-rendered or statically generated sites; select the relevant web guidance."
+---
+
+# Web Application Production Skill
+
+Use for:
+- React
+- Next.js
+- Remix
+- Vue
+- Nuxt
+- Svelte/SvelteKit
+- Angular
+- SPAs
+- SSR/SSG applications
+- browser-based SaaS products
+- public websites
+
+## Subskills
+
+Read when relevant:
+
+- [product-completeness/SKILL.md](product-completeness/SKILL.md)
+- [ux-states/SKILL.md](ux-states/SKILL.md)
+- [authentication/SKILL.md](authentication/SKILL.md)
+- [security/SKILL.md](security/SKILL.md)
+- [accessibility/SKILL.md](accessibility/SKILL.md)
+- [seo/SKILL.md](seo/SKILL.md)
+- [crawler-optimization/SKILL.md](crawler-optimization/SKILL.md) — audit and improve initial HTML, AI/search crawler access, metadata, and discovery files
+- [performance/SKILL.md](performance/SKILL.md)
+- [observability/SKILL.md](observability/SKILL.md)
+- [testing/SKILL.md](testing/SKILL.md)
+- [cicd/SKILL.md](cicd/SKILL.md)
+- [react-nextjs/SKILL.md](react-nextjs/SKILL.md)
+- [legal-privacy/SKILL.md](legal-privacy/SKILL.md)
+- [audit/SKILL.md](audit/SKILL.md)
+
+Before declaring a substantial web feature complete, run the web production audit.

@@ -1,0 +1,55 @@
+name: Auto-merge Dependabot GitHub Actions
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+permissions: {}
+
+jobs:
+  auto-merge:
+    if: >-
+      github.event.pull_request.user.login == 'dependabot[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      # Never check out or execute PR code in this privileged workflow.
+      - name: Verify Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      # Require every dependency to be an official actions/* repository.
+      # Empty, mixed, third-party, or malformed metadata is ineligible.
+      - name: Check official Actions allowlist
+        id: policy
+        if: steps.metadata.outputs.package-ecosystem == 'github_actions'
+        env:
+          DEPENDENCIES_JSON: ${{ steps.metadata.outputs.updated-dependencies-json }}
+        run: |
+          if jq -e '
+            type == "array" and length > 0 and
+            all(.[]; .dependencyName | test("^actions/[A-Za-z0-9_.-]+$"))
+          ' <<< "$DEPENDENCIES_JSON" > /dev/null; then
+            echo "eligible=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "eligible=false" >> "$GITHUB_OUTPUT"
+          fi
+      # Include major upgrades; required repository checks gate the merge.
+      - name: Approve GitHub Actions update
+        if: steps.policy.outputs.eligible == 'true'
+        run: gh pr review --approve "$PR_URL"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+      - name: Enable auto-merge for GitHub Actions update
+        if: steps.policy.outputs.eligible == 'true'
+        run: gh pr merge --auto --squash --match-head-commit "$HEAD_SHA" "$PR_URL"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
