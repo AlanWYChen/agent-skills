@@ -1,6 +1,6 @@
 ---
 name: production-engineering-skills
-description: "Guide production application development across web, mobile, and backend systems. Use when implementing or auditing production workflows; route to the applicable domain and supporting guidance."
+description: "Guide production application development across web, mobile, and backend systems. Use when implementing, refactoring, or auditing applications; route to the applicable domain and supporting guidance."
 ---
 
 # Production Engineering Skills
@@ -33,7 +33,7 @@ The duplicated versions are customized for the domain rather than treated as gen
 When working on a task:
 
 1. Identify whether the task is primarily web, mobile, backend, or multi-domain.
-2. Read that domain's linked `SKILL.md`.
+2. Before implementation or refactoring, read that domain's linked `SKILL.md`. Framework-specific guidance supplements the domain skill; it does not replace it.
 3. Read only the applicable supporting skills using its relative links. Resolve each link relative to the file containing it, without relying on automatic discovery of nested skills.
 4. Before completion, run the domain-specific production audit.
 5. For cross-domain systems, run the audit for every affected domain.

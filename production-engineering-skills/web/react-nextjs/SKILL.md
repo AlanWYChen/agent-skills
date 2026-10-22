@@ -5,6 +5,8 @@ description: "Implement or review React and Next.js production behavior. Use for
 
 # React / Next.js Production
 
+Read the parent [web guidance](../SKILL.md) before implementation or refactoring. Apply its structure and reusable UI guidance alongside this framework checklist.
+
 ## React
 
 Check:
