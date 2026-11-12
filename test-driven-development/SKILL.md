@@ -1,0 +1,41 @@
+---
+name: test-driven-development
+description: Mandatory test-driven development with frozen acceptance tests and separate test and implementation authors in multi-agent work.
+whenToUse: Before implementing or changing software behavior, including features, bug fixes, and behavior-affecting refactors.
+---
+
+# Test-driven development
+
+## Test-driven development: incremental RED–GREEN–REFACTOR
+Work in small behavioral increments rather than writing an entire feature and testing afterward. For each increment, the test author adds the next meaningful failing test, validates RED, and freezes the contract; the implementer writes the minimum correct production behavior to reach GREEN, then refactors production code while keeping tests unchanged and green. Repeat through a new test-authoring handoff for the next increment. Existing frozen tests remain immutable; adding new tests in a subsequent authoring phase does not authorize changing earlier ones. Passing tests is necessary, not sufficient: verify requirement coverage and reject test-specific hacks.
+
+## Stop and escalation criteria
+- STOP immediately when there is concrete evidence that an assertion contradicts an explicit requirement, two required expectations are mutually incompatible, or a test demands behavior impossible under the agreed platform/interface constraints. Cite the exact requirement and test location; difficulty or an unfamiliar design is not a contradiction.
+- STOP and report an environment blocker when meaningful verification cannot run because of missing access, dependencies, or broken infrastructure. Do not mislabel infrastructure failure as an invalid test or a successful implementation.
+- Use a bounded diagnostic budget: after THREE distinct hypothesis-driven implementation/diagnostic attempts with no material progress on the same failure, stop the implementation loop and escalate. Each attempt must state a different cause, an action to test it, and observed evidence. Repeated reruns or cosmetic edits are not distinct attempts. A coordinator may set a smaller budget in the handoff. Material progress means resolving a failing behavior or obtaining new evidence that substantially narrows the cause, not merely changing code.
+- Classify the outcome as `contract-question`, `implementation-blocked`, or `environment-blocked`. Being unable to pass a test does NOT establish that the test is wrong. If the cause is uncertain, say so and request independent review.
+- Send the coordinator/user a concise escalation packet: frozen test paths and relevant lines; reproducible command and failure; expected behavior and requirement source; hypotheses/actions/results; remaining uncertainty; protected-artifact integrity status; and the specific decision or help needed. Preserve current work and identify incomplete changes; do not silently revert user work or claim completion.
+- In multi-agent work, the implementer returns this packet and stops work on the affected increment. The coordinator may ask the test author or an independent reviewer to inspect the contract READ-ONLY. They may recommend a correction, but only explicit USER approval authorizes editing frozen tests. The coordinator must not evade the stop condition by spawning replacement implementers for the same unresolved blocker.
+- Resume the affected implementation only after a concrete resolution: user-approved contract revision with a renewed RED/freeze handoff, a resolved environment blocker, or an evidence-backed new implementation approach with an explicitly renewed bounded budget from the coordinator/user. Otherwise report the increment as incomplete and await guidance; unrelated independent work may continue.
+
+## Required sequence
+1. Inspect the requirements, existing behavior, test conventions, and relevant code without changing business logic. Resolve material ambiguity with the user; do not invent expected behavior to fit the implementation.
+2. Write meaningful executable tests FIRST, derived from the requested behavior. Cover the main success case, relevant failures, boundaries, and regression cases. Tests must exercise observable behavior, not merely mirror implementation details. Minimal test harness setup is allowed; do not implement the feature during this phase.
+3. Run the new tests against the pre-change implementation and verify RED: they fail because the requested behavior is missing or incorrect. Import, syntax, dependency, or infrastructure failures alone are not evidence of a valid behavioral failure. Where an absent interface prevents execution, document that limitation and use the smallest interface scaffold without business logic to expose the behavioral failure where feasible.
+4. Freeze the validated tests before implementation. Record the frozen test paths and a reproducible content baseline (such as hashes or a saved diff), plus the red command and result. Existing tests are protected too. Treat tests, assertions, expected values, fixtures, snapshots, test-selection configuration, coverage gates, and test-related harness behavior as read-only throughout implementation.
+5. Implement production behavior to satisfy the frozen contract. Do not delete, skip, weaken, rewrite, mock away, selectively exclude, or special-case tests; do not hardcode test inputs or alter the runner to manufacture a pass. Refactor production code only while preserving behavior and the frozen tests.
+6. Run all frozen tests and the relevant existing regression suite, plus applicable lint/type checks. Verify the frozen baseline is unchanged. A targeted green result is not a substitute for relevant regressions.
+7. Report the red evidence, implementation changes, green commands/results, frozen-test integrity check, and any unrun or blocked checks. Do not claim completion or passing tests without actual execution evidence. If execution is unavailable, report verification as blocked/unverified rather than successful.
+
+## Frozen-contract changes
+If a test appears wrong or requirements change, stop implementation and explain the specific discrepancy. Obtain explicit user approval BEFORE changing a frozen test or protected test artifact. Never silently repair tests to fit code, including through a different agent. After approval, return to test authoring, validate the revised contract independently, re-establish RED against the pre-feature behavior where feasible, record a new baseline, and only then resume implementation. Additional tests also belong to a new test-authoring phase; do not edit frozen tests while implementing.
+
+## Multi-agent separation
+When using multiple agents, the test author and feature implementer MUST be different agents. The coordinator assigns explicit ownership and enforces the phase boundary:
+- Test author: derives and writes tests from requirements, verifies RED, records the frozen baseline, and hands off expected behavior, test paths, and commands. Does not implement the feature.
+- Feature implementer: receives the frozen contract only after handoff, reads but never modifies protected test artifacts, and edits production code. Does not author or adjust the acceptance tests for its implementation.
+- Coordinator or independent verifier: confirms RED evidence, checks test integrity, and runs/reviews final verification. The coordinator must not bypass separation by writing both tests and business logic itself. Relay this policy and role restrictions explicitly to every delegated agent, including fresh-context agents and nested delegations.
+If the contract needs an approved revision, return it to the test author, not the implementer. Parallel work on independent features is permitted only when each feature retains its own test-driven dependency and protected-test ownership.
+
+## Scope
+Apply to software behavior changes, not read-only reviews, research, prose-only edits, or tasks that do not change executable behavior. For behavior-preserving refactors, establish meaningful characterization tests and an executable baseline first; do not fabricate a red failure for already-correct behavior. If meaningful automated testing is infeasible, explain why and ask the user for an explicit exception before implementing; do not silently switch to code-first work. Higher-priority instructions and explicit user-approved exceptions take precedence.

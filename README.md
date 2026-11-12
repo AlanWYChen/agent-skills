@@ -1,12 +1,15 @@
 # Agent Skills
 
-Provider-agnostic production engineering skills for web, mobile, and backend applications.
+Provider-agnostic engineering skills for production applications and disciplined test-driven development.
 The skills use the open [Agent Skills format](https://agentskills.io/specification)
 with Markdown instructions, standard skill metadata, and relative supporting-file links.
 
-## Included pack
+## Included skills
 
 ```text
+test-driven-development/
+└── SKILL.md
+
 production-engineering-skills/
 ├── SKILL.md
 ├── web/
@@ -17,6 +20,11 @@ production-engineering-skills/
         ├── SKILL.md
         └── assets/
 ```
+
+[test-driven-development](test-driven-development/SKILL.md) is a standalone workflow
+skill: derive tests from requirements first, verify a meaningful failing run, freeze
+the tests, and only then implement — with separate test-author and implementer roles
+in multi-agent work.
 
 Start with [the production engineering skill](production-engineering-skills/SKILL.md).
 It routes to the relevant domain and supporting guidance. Dependabot policy is
@@ -32,6 +40,7 @@ with the location of your clone:
 ```sh
 mkdir -p .agents/skills
 cp -R /path/to/agent-skills/production-engineering-skills .agents/skills/
+cp -R /path/to/agent-skills/test-driven-development .agents/skills/
 ```
 
 Keep the entire pack together to preserve relative links, shared policies, and
