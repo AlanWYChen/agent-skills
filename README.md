@@ -24,7 +24,7 @@ production-engineering-skills/
 [test-driven-development](test-driven-development/SKILL.md) is a standalone workflow
 skill: derive tests from requirements first, verify a meaningful failing run, freeze
 the tests, and only then implement — with separate test-author and implementer roles
-in multi-agent work.
+in multi-agent work. The skill is advisory unless your agent's instruction file (for example `AGENTS.md`) requires loading it before implementation changes.
 
 Start with [the production engineering skill](production-engineering-skills/SKILL.md).
 It routes to the relevant domain and supporting guidance. Dependabot policy is
@@ -52,6 +52,10 @@ Record the source commit when you need reproducible installations.
 
 No model provider configuration, SDK, or provider-specific invocation syntax is
 required. Skill discovery locations and nested-skill discovery vary by agent.
+A client that scans only one directory level discovers the two top-level skills;
+the support files and nested guidance are reached through relative links, so
+install and preserve the whole tree. An optional tool-specific hint such as
+`whenToUse` is ignored by clients that do not recognize it.
 If automatic discovery is unavailable, ask the agent to read the pack's
 `SKILL.md` directly and follow its relative links.
 

@@ -14,6 +14,8 @@ production-engineering-skills/
 
 Each domain contains its own production guidance. Shared repository workflows live in `shared/`; Dependabot policy has one authoritative copy used by every domain.
 
+Layout convention: a folder's `SKILL.md` is its entry point. Sibling `.md` files are sub-skill modules linked from that `SKILL.md` (for example the testing file splits), `references/` holds provider- or topic-specific reference material, and `assets/` holds reusable templates. Links are relative to the file that contains them, so the tree must stay intact.
+
 Notable additions:
 - Web/mobile/backend-specific authentication guidance
 - Google and Apple identity references
