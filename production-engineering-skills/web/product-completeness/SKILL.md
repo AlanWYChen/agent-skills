@@ -20,6 +20,7 @@ Check for applicable production surfaces beyond the main page:
 - notifications
 - billing/subscription management
 - organization/team management
+- transactional email for verification, reset, receipts, and email-change notices, with SPF/DKIM/DMARC configured
 - file upload lifecycle
 - admin/support surfaces where relevant
 - 404/403/500 pages

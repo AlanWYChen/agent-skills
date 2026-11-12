@@ -35,9 +35,11 @@ Repository sweep:
 - unbounded retries
 
 Classify:
-- Critical
-- High
-- Medium
-- Low
+- Critical: exploitable authorization bypass, data loss or corruption, secret exposure, or unauthenticated access to sensitive data
+- High: missing object-level authorization, unsafe retries on non-idempotent writes, unbounded resource use, or absent authorization checks on a reachable path
+- Medium: degraded failure handling, missing observability for critical paths, or inconsistent validation
+- Low: polish or maintainability
 
-Do not call the service production-ready while Critical findings remain.
+Treat each sweep item as a check with evidence: cite the file, the command, and the observed output.
+
+Do not call the service production-ready while any Critical or High finding remains open; a documented risk acceptance must name an owner and a date.

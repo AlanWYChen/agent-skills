@@ -9,5 +9,6 @@ Use Authorization Code + PKCE.
 - validate redirect/deep-link callback
 - validate state
 - exchange code securely
+- validate the ID token or access token on the backend, not only in the app
 - request minimal scopes
 - handle token expiration and revocation

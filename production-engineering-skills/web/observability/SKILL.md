@@ -31,4 +31,4 @@ Never log:
 - private keys
 - unnecessary sensitive personal data
 
-Alerts should be actionable and should distinguish user errors from system failures.
+Upload source maps for the exact release and tag errors with the release version; sample traces and logs deliberately; scrub PII before sending; collect Web Vitals attribution through RUM; alert on SLO burn rather than raw thresholds, and distinguish user errors from system failures.

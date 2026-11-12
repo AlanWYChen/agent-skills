@@ -1,11 +1,11 @@
 ---
 name: cicd
-description: "Guide web cicd. Use when implementing or reviewing continuous integration, build artifacts, protected deployments, credentials, and rollback in web applications."
+description: "Configure and review web CI/CD pipelines on GitHub Actions. Use for pull-request validation, immutable artifacts, protected production deploys, rollback, and dependency updates."
 ---
 
 # Web CI/CD with GitHub Actions
 
-GitHub Actions is the default CI/CD target.
+GitHub Actions is the default CI/CD target unless the repository already uses another system.
 
 ## Pull Request workflow
 
@@ -37,7 +37,9 @@ Typical stages:
 
 ## GitHub Actions guidance
 
-- pin action major versions or SHAs according to repository policy
+- pin third-party actions to full commit SHAs; major tags are acceptable only for official `actions/*` under an explicit policy
+- set a workflow-level `permissions: contents: read` and escalate per job only where needed
+- set `persist-credentials: false` on checkout and never expose deploy secrets to PR-controlled code; avoid `pull_request_target` unless its privilege boundary is deliberate
 - use GitHub Environments for protected production deploys
 - use OIDC to cloud providers instead of long-lived cloud keys where possible
 - keep secrets in GitHub Secrets/Environments

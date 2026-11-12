@@ -15,6 +15,10 @@ Track:
 - disk usage
 - crash-free sessions
 
+Measure on representative devices with platform tooling (Xcode Instruments, XCTest metrics, Android Macrobenchmark/Profiler) and establish a baseline before optimizing.
+
+Define cold/warm/hot start and a frame budget (16.7 ms at 60 Hz, 8.3 ms at 120 Hz), plus app size budgets with App Bundle splits and on-demand delivery where relevant.
+
 Consider:
 - lazy initialization
 - image resizing/caching

@@ -18,6 +18,8 @@ Use for:
 - browser-based SaaS products
 - public websites
 
+Only React/Next.js has a dedicated framework file (`react-nextjs/SKILL.md`) and the React/Vite reference. For Vue, Nuxt, Svelte/SvelteKit, Angular, and Remix, follow framework-native conventions; treat the React/Vite folder example below as specific to that stack.
+
 ## Structure and reusable UI
 
 Apply this guidance before web implementation or refactoring, then load the relevant supporting skills. Inspect the existing framework conventions and repository structure first.

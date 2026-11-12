@@ -46,5 +46,6 @@ Use the reference matching the provider or mechanism:
 - [references/passkeys-webauthn.md](references/passkeys-webauthn.md)
 - [references/oauth-pkce.md](references/oauth-pkce.md)
 - [references/session-cookies.md](references/session-cookies.md)
+- [references/password-flows.md](references/password-flows.md)
 
 Do not put OAuth client secrets in browser bundles.

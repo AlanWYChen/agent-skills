@@ -36,16 +36,18 @@ Typical stages:
 7. smoke/integration checks
 8. protected production deployment
 9. post-deploy smoke checks
-10. rollback on failed health gates
+10. rollback by redeploying the previous immutable image; fix migrations forward
 
 ## GitHub Actions practices
 
 - prefer OIDC federation for AWS/GCP/Azure over static cloud keys
 - use GitHub Environments for production protection
 - use concurrency controls for deployment workflows
-- pin important third-party actions
+- pin every third-party action to a full commit SHA
 - separate build and deploy permissions
 - use least-privilege `permissions:` blocks
+- default the workflow to `permissions: contents: read`; grant `id-token: write` only to the deploy job
+- never expose secrets to fork PRs and never check out PR code under `pull_request_target`
 - never print secrets
 - keep production credentials environment-scoped
 - publish test reports and logs as artifacts when useful

@@ -29,6 +29,10 @@ Consider:
 - `error.tsx`
 - `not-found.tsx`
 - `global-error.tsx`
+- `middleware.ts` for auth gating and headers
+- async `cookies()`, `headers()`, `params`, and `searchParams` (Next.js 15+)
+- `next.config` `headers()` and `redirects()`
+- the `server-only` boundary and what may use `NEXT_PUBLIC_`
 - Metadata API
 - `robots.ts`
 - `sitemap.ts`
@@ -45,3 +49,6 @@ Treat Server Actions as public server endpoints:
 - authorize
 - validate
 - check ownership
+- configure body size limits and allowed origins; actions are directly invokable by ID
+
+Target a supported Next.js/React major and verify framework behavior against the installed version.

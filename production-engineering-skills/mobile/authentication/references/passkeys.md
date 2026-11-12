@@ -7,7 +7,7 @@ Use platform credential APIs:
 Backend responsibilities:
 - generate challenges
 - verify WebAuthn/passkey assertions
-- validate relying party/origin/app association requirements
+- validate relying party/origin/app association: on iOS the `webcredentials` associated-domains entitlement plus an AASA `webcredentials` section served over HTTPS, and on Android `assetlinks.json` listing both the upload-key and Play App Signing SHA-256 fingerprints
 - store credential public keys/IDs
 - support recovery and device migration scenarios
 

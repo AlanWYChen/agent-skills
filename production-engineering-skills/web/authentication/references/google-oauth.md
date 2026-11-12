@@ -10,7 +10,7 @@ Prefer Authorization Code flow with PKCE where supported.
 4. Handle callback on a trusted server route.
 5. Validate state.
 6. Exchange authorization code server-side.
-7. Validate issuer, audience, expiry, and nonce where applicable.
+7. Validate the ID token signature against Google's published keys, then issuer, audience, expiry, and nonce where applicable.
 8. Map or create the local user.
 9. Create the application's own secure session.
 10. Store sensitive tokens server-side if continued Google API access is needed.

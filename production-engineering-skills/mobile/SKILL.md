@@ -26,4 +26,6 @@ Use for:
 - [release/SKILL.md](release/SKILL.md)
 - [audit/SKILL.md](audit/SKILL.md)
 
-Before release, run the mobile production audit.
+Start from the task: new screen or flow → product-completeness, accessibility, and security; auth change → authentication and secure-token-storage; store submission → release and audit.
+
+Before completion, run the mobile production audit.

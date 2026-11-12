@@ -25,4 +25,10 @@ If non-essential analytics/advertising tracking is used, consider:
 - ability to change preferences later
 - withholding optional trackers until required consent is obtained
 
+- Reject All with the same prominence and effort as Accept All
+- honor Global Privacy Control (GPC) signals where applicable
+- record consent timestamp, policy version, categories, and user identifier
+- block non-essential tags until consent is recorded
+- publish a cookie table with purposes and retention
+
 Flag jurisdiction-specific questions for legal review.

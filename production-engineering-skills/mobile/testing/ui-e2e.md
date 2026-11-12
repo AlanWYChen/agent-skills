@@ -16,3 +16,5 @@ Typical tools:
 - Maestro
 - Detox
 - Appium
+
+Real devices are required for biometrics, push, camera, in-app purchase, and universal/app links. Grant system permissions programmatically (for example `GrantPermissionRule` or UiAutomator) because Espresso cannot click system dialogs; seed data through a mock backend (WireMock, MockWebServer) or dedicated test accounts, and quarantine flaky tests with a named owner.

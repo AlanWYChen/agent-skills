@@ -33,4 +33,8 @@ Never log:
 - private keys
 - unnecessary sensitive data
 
+- never use user or request IDs as metric labels
+- sample traces deliberately and redact PII, webhook payloads, and secrets
+- alert on SLI/SLO burn rate rather than raw thresholds
+
 Propagate trace/correlation context across HTTP, queues, and jobs.

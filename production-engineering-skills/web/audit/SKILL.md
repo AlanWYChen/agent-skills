@@ -1,6 +1,6 @@
 ---
 name: audit
-description: "Guide web audit. Use when implementing or reviewing production readiness, security, reliability, testing, release configuration, and prioritized findings in web applications."
+description: "Audit web production readiness. Use when reviewing completeness, security, accessibility, performance, observability, testing, and release configuration, and when producing severity-ranked findings."
 ---
 
 # Web Production Audit
@@ -18,7 +18,7 @@ Audit:
 - performance
 - observability
 - testing
-- GitHub Actions CI/CD
+- CI/CD (GitHub Actions or the existing system)
 - deployment configuration
 
 Repository sweep:
@@ -33,17 +33,16 @@ Repository sweep:
 - mock data
 - hard-coded credentials
 - public secrets
+- `.env*` files, client-exposed prefixes, and public source maps
+
+Scope the sweep to application source and exclude `node_modules`, build output, coverage, test fixtures, and lockfiles; intentional server-side logging is not a finding.
 
 Classify findings:
-- Critical
-- High
-- Medium
-- Low
+- Critical: blocks release or is a security/privacy breach
+- High: breaks a critical workflow or exposes data
+- Medium: degraded behavior or accessibility barrier
+- Low: polish or minor performance issue
 
-For each:
-- location
-- issue
-- impact
-- recommended fix
+For each finding report: location, issue, impact, evidence, and recommended fix.
 
 Do not call the app production-ready while Critical findings remain.

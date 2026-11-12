@@ -39,3 +39,5 @@ For forms include:
 - accessible error announcements
 - success confirmation
 - unsaved-changes handling where appropriate
+
+Implement states, not just name them: abort in-flight requests (AbortController), set timeouts, retry with backoff and a cap, queue mutations while offline, move focus and announce transitions, and use route-level error boundaries.

@@ -46,7 +46,7 @@ If enabling the interactive layout changes section positions, restore direct fra
 
 - Require representative body content, including each role summary or product/project description, and real resume/profile/contact anchors. Parsing text with an HTML parser is more robust than substring assertions where escaping or markup splits content.
 - Validate JSON-LD as JSON and compare canonical, sitemap locations, and generated identity URLs. Check local asset existence while respecting deployment base paths.
-- Serve real built files for tests. Give robots.txt and sitemap.xml appropriate content types, and return real 404s for unknown paths rather than SPA fallback HTML.
+- Serve real built files for tests. Give robots.txt and sitemap.xml appropriate content types, and return real 404s for unknown paths rather than SPA fallback HTML. On static hosts that means Netlify's `404.html` (with no `/* /index.html 200` catch-all once routes are prerendered), Vercel's `vercel.json` filesystem handling, CloudFront custom error responses for 403/404, or GitHub Pages' `404.html`.
 - In JavaScript-disabled contexts, verify that summaries and links are visible and not inert. With JavaScript enabled, monitor page errors and hydration-related console errors, then run the existing interaction checks.
 - Preserve expected negative tests: a deliberate 404 can emit a network console error without indicating an application or hydration failure.
 - Use screenshots after hydration and relevant transitions have settled. Fixed headers and element screenshots can produce misleading overlaps; inspect the actual viewport before changing working layout based on a capture artifact.

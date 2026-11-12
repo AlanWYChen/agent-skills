@@ -5,7 +5,7 @@ description: "Guide mobile testing. Use when implementing or reviewing test sele
 
 # Mobile Testing
 
-Subskills:
+References:
 - [unit.md](unit.md)
 - [integration.md](integration.md)
 - [ui-e2e.md](ui-e2e.md)
@@ -13,3 +13,5 @@ Subskills:
 - [accessibility.md](accessibility.md)
 
 Use the cheapest reliable layer that catches the failure.
+
+Define the support matrix explicitly (minimum and current OS, small and large phone, tablet if supported). Hardware-backed flows — biometrics, push, camera, in-app purchase, universal/app links — need real devices; simulators and emulators cannot validate them.

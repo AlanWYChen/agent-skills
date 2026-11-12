@@ -20,9 +20,12 @@ jobs:
       # Never check out or execute PR code in this privileged workflow.
       - name: Verify Dependabot metadata
         id: metadata
+        # Pin this to a full commit SHA after verifying the release; v3 is an example tag.
         uses: dependabot/fetch-metadata@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Keep the default: reject PRs whose commits are not Dependabot-verified.
+          skip-commit-verification: false
       # Require every dependency to be an official actions/* repository.
       # Empty, mixed, third-party, or malformed metadata is ineligible.
       - name: Check official Actions allowlist
@@ -53,3 +56,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      - name: Revoke auto-merge for ineligible updates
+        if: steps.metadata.outputs.package-ecosystem == 'github_actions' && steps.policy.outputs.eligible != 'true'
+        continue-on-error: true
+        run: gh pr merge --disable-auto "$PR_URL"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}

@@ -5,9 +5,13 @@ description: "Guide web testing. Use when implementing or reviewing test selecti
 
 # Web Testing
 
-Select the appropriate test layer instead of pushing everything into E2E.
+Select the appropriate test layer instead of pushing everything into E2E:
+- pure logic → unit
+- component behavior and accessibility → component
+- UI plus API/database boundaries → integration
+- cross-page, browser-only, or navigation flows → E2E
 
-Subskills:
+References:
 - [unit.md](unit.md)
 - [component.md](component.md)
 - [integration.md](integration.md)
@@ -15,4 +19,4 @@ Subskills:
 - [accessibility.md](accessibility.md)
 - [visual.md](visual.md)
 
-Critical flows should generally have integration and/or E2E coverage.
+Mock at the network boundary (for example MSW) rather than at internal modules. Make time, randomness, and test data deterministic and isolated per test. Quarantine flaky tests with a named owner and a fix deadline; retries detect flakiness, they do not fix it. Every critical workflow must have integration and/or E2E coverage.

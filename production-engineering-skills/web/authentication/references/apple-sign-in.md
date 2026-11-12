@@ -2,6 +2,8 @@
 
 Use Apple's authorization flow through a server-controlled callback.
 
+For web, `client_id` is the Apple Services ID, not the app bundle ID. The code exchange needs a server-generated `client_secret`: an ES256 JWT signed with the `.p8` key, with the Apple Team ID as `iss`, the Services ID as `sub`, `aud` set to `https://appleid.apple.com`, and `exp` at most six months ahead. Request `response_mode=form_post` whenever `name` or `email` scopes are requested. Keep the `.p8` key server-only, register the Return URL as HTTPS, and validate the ID token's `aud` (Services ID) and `nonce` claim.
+
 ## Typical flow
 
 1. Generate state and nonce.

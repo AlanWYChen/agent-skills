@@ -3,6 +3,7 @@ updates:
   # Code dependency PRs require manual review and merging.
   - package-ecosystem: npm
     directory: /
+    open-pull-requests-limit: 5
     schedule:
       interval: weekly
       day: monday
@@ -11,6 +12,12 @@ updates:
   # Actions PRs (including major upgrades) are handled by dependabot-auto-merge.yml.
   - package-ecosystem: github-actions
     directory: /
+    open-pull-requests-limit: 5
+    # Optional grouping; the allowlist check still runs on every updated dependency,
+    # so a group containing any non-`actions/*` dependency stays manual.
+    # groups:
+    #   actions:
+    #     patterns: ["actions/*"]
     schedule:
       interval: weekly
       day: monday

@@ -5,7 +5,7 @@ description: "Guide web accessibility. Use when implementing or reviewing access
 
 # Web Accessibility
 
-Target WCAG 2.2 AA where practical.
+Target WCAG 2.2 AA and document any exception explicitly instead of leaving it implicit.
 
 Check:
 - semantic HTML
@@ -26,5 +26,11 @@ Check:
 - skip-to-content
 - table semantics
 - screen-reader sanity checks
+- text contrast 4.5:1 and non-text/large-text contrast 3:1
+- 24×24 CSS px minimum target size (WCAG 2.5.8)
+- 200% zoom and 320 px reflow without loss
+- route-change focus management and document-title updates in SPAs
+- `<html lang>` and landmarks on every page
+- alternatives for dragging (2.5.7), no redundant entry (3.3.7), and accessible authentication (3.3.8)
 
 Prefer native HTML elements over custom ARIA widgets.

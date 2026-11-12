@@ -27,3 +27,13 @@ References:
 - [references/api-keys.md](references/api-keys.md)
 - [references/service-to-service.md](references/service-to-service.md)
 - [references/webauthn.md](references/webauthn.md)
+- [references/session-cookies.md](references/session-cookies.md)
+
+## Credential handling
+- hash passwords with Argon2id (or bcrypt with a tuned cost), never fast hashes, and check breached-password lists where feasible
+- rotate refresh tokens on use, detect reuse, and revoke the token family on reuse
+- store API keys as hashes and compare them in constant time
+- provide MFA recovery codes and a step-up path for sensitive actions
+
+## Account recovery
+Use single-use hashed tokens with a short TTL, uniform responses to avoid account enumeration, reauthentication before email or authenticator changes, and revocation of all sessions and refresh tokens after recovery. Rate-limit recovery attempts.
