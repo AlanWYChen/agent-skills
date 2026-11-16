@@ -19,6 +19,12 @@ production-engineering-skills/
     └── dependabot-policy/
         ├── SKILL.md
         └── assets/
+
+dsh-plugin/
+├── SKILL.md
+└── UI-UX/
+    ├── SKILL.md
+    └── references/
 ```
 
 [test-driven-development](test-driven-development/SKILL.md) is a standalone workflow
@@ -29,6 +35,11 @@ in multi-agent work. The skill is advisory unless your agent's instruction file 
 Start with [the production engineering skill](production-engineering-skills/SKILL.md).
 It routes to the relevant domain and supporting guidance. Dependabot policy is
 maintained once under `shared/` and linked from each domain's CI/CD skill.
+
+For plugins that render a user interface inside DeepSeek Harness, start with
+[the DSH plugin skill](dsh-plugin/SKILL.md). Its [UI/UX guidance](dsh-plugin/UI-UX/SKILL.md)
+defines what following DSH's native design means for panels, toolbars, lists, and
+states, with layout recipes and a review log alongside it.
 
 ## Install in a project
 
@@ -41,6 +52,7 @@ with the location of your clone:
 mkdir -p .agents/skills
 cp -R /path/to/agent-skills/production-engineering-skills .agents/skills/
 cp -R /path/to/agent-skills/test-driven-development .agents/skills/
+cp -R /path/to/agent-skills/dsh-plugin .agents/skills/
 ```
 
 Keep the entire pack together to preserve relative links, shared policies, and
